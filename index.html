@@ -116,6 +116,11 @@
 
             </div>
 
+            <!-- DATE (NEW) -->
+            <div class="date" id="date"
+                 style="text-align:center; margin-top:12px; font-size:18px; font-weight:600; letter-spacing:1px;">
+            </div>
+
         </div>
 
 
@@ -262,6 +267,19 @@ function updateClock() {
 
     document.getElementById("zone")
         .textContent = zone;
+
+
+
+    /* CURRENT DATE (NEW) */
+
+    document.getElementById("date")
+        .textContent =
+        now.toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
 
 
 
