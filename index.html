@@ -3,579 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pritam Deshkar - Frontend Developer Portfolio">
-    <meta name="theme-color" content="#fbf9f7">
-    <meta property="og:title" content="Pritam Deshkar | Frontend Developer">
-    <meta property="og:description" content="Modern, responsive websites built with HTML, CSS and JavaScript.">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💻%3C/text%3E%3C/svg%3E">
-    <title>Pritam Deshkar | Frontend Developer</title>
-
-    <script>
-        try {
-            var t = localStorage.getItem("theme");
-            if (!t && window.matchMedia("(prefers-color-scheme: dark)").matches) t = "dark";
-            if (t) document.documentElement.setAttribute("data-theme", t);
-        } catch (e) {}
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Digital Clock & Alarm</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
 </head>
-
 <body>
-<div class="loader" id="loader" aria-hidden="true"><span>PD</span></div>
-<div class="scroll-progress" aria-hidden="true"></div>
-<header class="site-header">
-    <nav class="navbar" aria-label="Main navigation">
-        <a href="#home" class="logo">Pritam <span>Deshkar</span></a>
 
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#certificates">Certificates</a></li>
-            <li><a href="#resume">Resume</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+<nav class="tabs">
+    <button class="tab active" data-view="home">🏠 Home</button>
+    <button class="tab" data-view="routine">⚙️ Routine</button>
+    <div class="toolbar">
+        <button class="tool" id="formatBtn" title="Switch 12h / 24h">12h</button>
+        <button class="tool" id="themeBtn" title="Toggle dark mode">🌙</button>
+    </div>
+</nav>
 
-        <button class="theme-btn" type="button" aria-label="Switch to dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
-
-        <button class="menu-btn" type="button" onclick="toggleMenu()"
-                aria-label="Open navigation menu" aria-expanded="false"
-                aria-controls="nav-links">
-            <i class="fas fa-bars" aria-hidden="true"></i>
-        </button>
-    </nav>
-</header>
-
-<main>
-    <!-- HERO -->
-    <section id="home" class="hero">
-        <div class="hero-card">
-            <div class="hero-image">
-                <img src="Images/developer.jpg" alt="Pritam Deshkar" fetchpriority="high">
-                <div class="image-label">FRONTEND DEVELOPER</div>
-            </div>
-
-            <div class="hero-content">
-                <p class="eyebrow">WELCOME TO MY PORTFOLIO</p>
-                <h1>Hello, I'm<br><span>Pritam Deshkar</span></h1>
-                <h2>Frontend Developer</h2>
-
-                <p class="hero-description">
-                    I create modern, responsive and attractive websites
-                    using HTML, CSS and JavaScript. I enjoy turning ideas
-                    into beautiful digital experiences.
-                </p>
-
-                <div class="hero-actions">
-                    <a href="#projects" class="primary-btn">Explore My Work <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="secondary-btn">Let's Connect</a>
-                </div>
-
-                <div class="social-icons" aria-label="Social media links">
-                    <a href="https://www.linkedin.com/in/pritam-deshkar-b46440249/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/Pritamdeshkar06" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://wa.me/917558619604" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:deshkarpritam@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
+<main class="home view" id="home">
+    <div class="clock-card hero">
+        <div class="time-label">CURRENT TIME</div>
+        <div class="clock">
+            <div class="unit"><strong id="hours">00</strong><span>hours</span></div><b>:</b>
+            <div class="unit"><strong id="minutes">00</strong><span>min</span></div><b>:</b>
+            <div class="unit"><strong id="seconds">00</strong><span>sec</span></div>
+            <div class="zone" id="zone">AM</div>
         </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-        <div class="section-heading">
-            <p class="eyebrow">GET TO KNOW ME</p>
-            <h2>About <span>Me</span></h2>
-        </div>
-
-        <div class="about-grid">
-            <div class="about-content">
-                <h3>Hello! I'm Pritam Deshkar</h3>
-                <p>I am a Computer Science and Engineering student interested in Frontend Development and Web Technologies.</p>
-                <p>I enjoy creating clean, modern and responsive websites. I work with HTML, CSS and JavaScript and continuously improve my skills by building practical web projects.</p>
-                <p>My goal is to develop useful and user-friendly web experiences while learning new technologies.</p>
-                <a href="#skills" class="text-link">Explore My Skills <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    
-        <div class="stats">
-            <div><strong data-count="3">0</strong><span>Projects</span></div>
-            <div><strong data-count="3">0</strong><span>Certificates</span></div>
-            <div><strong data-count="2">0</strong><span>Education</span></div>
-            <div><strong data-count="6">0</strong><span>Skills</span></div>
-        </div>
-    </section>
-
-    
-<!-- SKILLS -->
-<section id="skills" class="section alternate">
-
-    <div class="section-heading">
-        <p class="eyebrow">WHAT I KNOW</p>
-        <h2>My <span>Skills</span></h2>
-        <p>Technologies I use to create websites.</p>
+        <div class="date" id="date" style="text-align:center;margin-top:12px;font-size:18px;font-weight:600;letter-spacing:1px;"></div>
     </div>
 
-    <div class="cards-grid">
-
-        <!-- HTML -->
-        <article class="info-card skill-card">
-            <div class="skill-top">
-                <div class="card-icon html-icon">
-                    <i class="fab fa-html5"></i>
-                </div>
-                <span class="skill-number">01</span>
-            </div>
-
-            <h3>HTML5</h3>
-            <p>
-                Building structured and semantic web pages
-                using HTML5 elements.
-            </p>
-
-            <div class="skill-bar" data-level="90"><span></span></div>
-            <small class="skill-level">90%</small>
-
-            <button type="button"
-                    onclick="showSkill('HTML')"
-                    class="card-link">
-                Learn More
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </article>
-
-        <!-- CSS -->
-        <article class="info-card skill-card">
-            <div class="skill-top">
-                <div class="card-icon css-icon">
-                    <i class="fab fa-css3-alt"></i>
-                </div>
-                <span class="skill-number">02</span>
-            </div>
-
-            <h3>CSS3</h3>
-            <p>
-                Creating attractive, responsive and modern
-                website layouts using CSS3.
-            </p>
-
-            <div class="skill-bar" data-level="85"><span></span></div>
-            <small class="skill-level">85%</small>
-
-            <button type="button"
-                    onclick="showSkill('CSS')"
-                    class="card-link">
-                Learn More
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </article>
-
-        <!-- JAVASCRIPT -->
-        <article class="info-card skill-card">
-            <div class="skill-top">
-                <div class="card-icon js-icon">
-                    <i class="fab fa-js"></i>
-                </div>
-                <span class="skill-number">03</span>
-            </div>
-
-            <h3>JavaScript</h3>
-            <p>
-                Adding interactivity and dynamic functionality
-                to websites using JavaScript.
-            </p>
-
-            <div class="skill-bar" data-level="75"><span></span></div>
-            <small class="skill-level">75%</small>
-
-            <button type="button"
-                    onclick="showSkill('JavaScript')"
-                    class="card-link">
-                Learn More
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </article>
-
-    
-        <article class="info-card skill-card">
-            <div class="skill-top"><div class="card-icon"><i class="fab fa-github"></i></div><span class="skill-number">04</span></div>
-            <h3>Git &amp; GitHub</h3>
-            <p>Version control and sharing code.</p>
-            <div class="skill-bar" data-level="80"><span></span></div>
-            <small class="skill-level">80%</small>
-            <button type="button" onclick="showSkill('Git')" class="card-link">Learn More <i class="fas fa-arrow-right"></i></button>
-        </article>
-
-        <article class="info-card skill-card">
-            <div class="skill-top"><div class="card-icon"><i class="fas fa-mobile-screen"></i></div><span class="skill-number">05</span></div>
-            <h3>Responsive Design</h3>
-            <p>Websites that fit every screen size.</p>
-            <div class="skill-bar" data-level="85"><span></span></div>
-            <small class="skill-level">85%</small>
-            <button type="button" onclick="showSkill('Responsive')" class="card-link">Learn More <i class="fas fa-arrow-right"></i></button>
-        </article>
-
-        <article class="info-card skill-card">
-            <div class="skill-top"><div class="card-icon"><i class="fas fa-lightbulb"></i></div><span class="skill-number">06</span></div>
-            <h3>Problem Solving</h3>
-            <p>Breaking problems into small solutions.</p>
-            <div class="skill-bar" data-level="70"><span></span></div>
-            <small class="skill-level">70%</small>
-            <button type="button" onclick="showSkill('Problem')" class="card-link">Learn More <i class="fas fa-arrow-right"></i></button>
-        </article>
-
-    </div>
-</section>
-
-    <!-- LANGUAGES -->
-    <section id="languages" class="section">
-        <div class="section-heading">
-            <p class="eyebrow">COMMUNICATION</p>
-            <h2>My <span>Languages</span></h2>
-        </div>
-
-        <div class="cards-grid three-grid">
-            <article class="info-card language-card">
-                <div class="card-icon">EN</div>
-                <h3>English</h3>
-                <p>Communication</p>
-            </article>
-            <article class="info-card language-card">
-                <div class="card-icon">हि</div>
-                <h3>Hindi</h3>
-                <p>Communication</p>
-            </article>
-            <article class="info-card language-card">
-                <div class="card-icon">म</div>
-                <h3>Marathi</h3>
-                <p>Native Language</p>
-            </article>
-        </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education" class="section alternate">
-        <div class="section-heading">
-            <p class="eyebrow">MY LEARNING JOURNEY</p>
-            <h2>My <span>Education</span></h2>
-        </div>
-
-        <div class="education-list">
-            <article class="education-card">
-                <div class="education-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div>
-                    <span class="education-tag">Pursuing</span>
-                    <h3>B.Tech - Computer Science &amp; Engineering</h3>
-                    <p>Tulsiramji Gaikwad-Patil College of Engineering &amp; Technology, Nagpur.</p>
-                </div>
-            </article>
-
-            <article class="education-card">
-                <div class="education-icon"><i class="fas fa-book-open"></i></div>
-                <div>
-                    <span class="education-tag">Diploma</span>
-                    <h3>Computer Technology</h3>
-                    <p>Shushganga Polytechnic, Wani, District Yavatmal, Maharashtra.</p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    
-<!-- PROJECTS -->
-<section id="projects" class="section">
-
-    <div class="section-heading">
-        <p class="eyebrow">MY RECENT WORK</p>
-        <h2>My <span>Projects</span></h2>
-        <p>Some projects I have worked on.</p>
-    </div>
-
-    <div class="project-list">
-
-        <!-- PROJECT 01 -->
-        <article class="project-item">
-            <div class="project-details">
-                <span class="project-number">01</span>
-                <h3>Portfolio Website</h3>
-                <p>Personal Developer Portfolio</p>
-
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-            </div>
-
-            <div class="project-links">
-                <button type="button" onclick="showProject('Portfolio')" class="card-link">
-                    Learn More <i class="fas fa-arrow-right"></i>
-                </button>
-                                <a href="https://pritamdeshkar06.github.io/My-Portfollio/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="project-icon"
-                   title="Live Demo"
-                   aria-label="Open Portfolio Live Demo">
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-
-                <a href="https://github.com/Pritamdeshkar06"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="project-icon"
-                   title="GitHub"
-                   aria-label="Open Portfolio GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-        </article>
-
-
-        <!-- PROJECT 02 -->
-        <article class="project-item">
-            <div class="project-details">
-                <span class="project-number">02</span>
-                <h3>Digital Clock &amp; Alarm</h3>
-                <p>Real-Time Digital Clock Web Application</p>
-
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-            </div>
-
-            <div class="project-links">
-                <button type="button" onclick="showProject('Clock')" class="card-link">
-                    Learn More <i class="fas fa-arrow-right"></i>
-                </button>
-                                <a href="https://pritamdeshkar06.github.io/Digital-Clock/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="project-icon"
-                   title="Live Demo"
-                   aria-label="Open Digital Clock Live Demo">
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-
-                <a href="https://github.com/Pritamdeshkar06"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="project-icon"
-                   title="GitHub"
-                   aria-label="Open Digital Clock GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-        </article>
-
-
-        <!-- PROJECT 03 -->
-        <article class="project-item">
-            <div class="project-details">
-                <span class="project-number">03</span>
-                <h3>TruckGo</h3>
-                <p>TruckGo Transportation Website</p>
-
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-            </div>
-
-            <div class="project-links">
-                <button type="button" onclick="showProject('TruckGo')" class="card-link">
-                    Learn More <i class="fas fa-arrow-right"></i>
-                </button>
-                                </div>
-        </article>
-
-    </div>
-</section>
-
-    
-<!-- CERTIFICATES -->
-<section id="certificates" class="section alternate">
-
-    <div class="section-heading">
-        <p class="eyebrow">MY ACHIEVEMENTS</p>
-        <h2>My <span>Certificates</span></h2>
-        <p>Click on a certificate to view it.</p>
-    </div>
-
-    <div class="cards-grid three-grid">
-
-        <article class="info-card certificate-card"
-            data-cert-src="Images/certificate1.jpg" data-cert-title="Certificate 01"
-            role="button" tabindex="0">
-
-            <div class="card-icon">
-                <i class="fas fa-certificate"></i>
-            </div>
-            <h3>Certificate 01</h3>
-            <p>Click to view certificate.</p>
-        </article>
-
-        <article class="info-card certificate-card"
-            data-cert-src="Images/certificate2.jpg" data-cert-title="Certificate 02"
-            role="button" tabindex="0">
-
-            <div class="card-icon">
-                <i class="fas fa-award"></i>
-            </div>
-            <h3>Certificate 02</h3>
-            <p>Click to view certificate.</p>
-        </article>
-
-        <article class="info-card certificate-card"
-            data-cert-src="Images/certificate3.jpg" data-cert-title="Certificate 03"
-            role="button" tabindex="0">
-
-            <div class="card-icon">
-                <i class="fas fa-medal"></i>
-            </div>
-            <h3>Certificate 03</h3>
-            <p>Click to view certificate.</p>
-        </article>
-
-    </div>
-</section>
-
-
-    <!-- RESUME -->
-    <section id="resume" class="section">
-        <div class="resume-box">
+    <div class="home-grid">
+        <div class="card next-card">
             <div>
-                <p class="eyebrow">MY PROFILE</p>
-                <h2>My <span>Resume</span></h2>
-                <p>View or download my resume to know more about my education and skills.</p>
+                <div class="time-label">⏰ NEXT ALARM</div>
+                <div class="next-name" id="nextName">—</div>
             </div>
-            <div class="resume-actions">
-                <a href="Pritam_Deshkar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="secondary-btn">View Resume</a>
-            <a href="Pritam_Deshkar_Resume.pdf" download class="primary-btn">
-                <i class="fas fa-download"></i> Download Resume
-            </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section alternate">
-        <div class="section-heading">
-            <p class="eyebrow">LET'S CONNECT</p>
-            <h2>Let's <span>Connect</span></h2>
+            <div class="countdown" id="countdown">--:--:--</div>
         </div>
 
-        <div class="connect-container">
-            <div class="connect-left">
-                <p class="eyebrow">FIND ME ONLINE</p>
-                <div class="online-links">
-                    <a href="https://www.linkedin.com/in/pritam-deshkar-b46440249/" target="_blank" rel="noopener noreferrer" class="online-link">
-                        <i class="fab fa-linkedin-in"></i><span>LinkedIn</span><i class="fas fa-arrow-up-right-from-square"></i>
-                    </a>
-                    <a href="https://github.com/Pritamdeshkar06" target="_blank" rel="noopener noreferrer" class="online-link">
-                        <i class="fab fa-github"></i><span>GitHub</span><i class="fas fa-arrow-up-right-from-square"></i>
-                    </a>
-                    <a href="https://wa.me/917558619604" target="_blank" rel="noopener noreferrer" class="online-link">
-                        <i class="fab fa-whatsapp"></i><span>WhatsApp</span><i class="fas fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="connect-right">
-                <p class="eyebrow">GET IN TOUCH</p>
-                <h2>CONTACT <span>ME</span></h2>
-                <p class="contact-description">Have a project idea or want to work together? Feel free to contact me.</p>
-
-                <div class="contact-actions">
-                    <a href="mailto:deshkarpritam@gmail.com" class="primary-btn">
-                        <i class="fas fa-envelope"></i> SEND EMAIL
-                    </a>
-                    <a href="tel:+917558619604" class="phone-link">
-                        <i class="fas fa-phone"></i> +91 7558619604
-                    </a>
-                <button type="button" class="phone-link copy-btn" id="copyEmail" aria-label="Copy email address" title="Copy email address"><i class="fas fa-copy"></i> <span>Copy</span></button>
-                </div>
-            </div>
+        <div class="card">
+            <div class="time-label">DAY PROGRESS</div>
+            <div class="bar"><div class="bar-fill" id="dayBar"></div></div>
+            <p class="small" id="dayInfo"></p>
         </div>
-    </section>
+
+        <div class="card">
+            <div class="time-label">🌍 WORLD CLOCK</div>
+            <div id="worldClocks"></div>
+        </div>
+
+        <div class="card">
+            <div class="time-label">⏱️ STOPWATCH</div>
+            <div class="sw-time" id="swTime">00:00.0</div>
+            <div class="sw-btns">
+                <button class="tool" id="swStart">Start</button>
+                <button class="tool" id="swLap">Lap</button>
+                <button class="tool" id="swReset">Reset</button>
+            </div>
+            <ol class="laps" id="laps"></ol>
+        </div>
+    </div>
 </main>
 
-<!-- SKILL POPUP -->
-<div class="popup" id="popup" role="dialog" aria-modal="true"
-     aria-hidden="true" aria-labelledby="popupTitle">
-    <div class="popup-content">
-        <button class="popup-close" type="button" onclick="closePopup()" aria-label="Close popup">&times;</button>
-        <p class="eyebrow">MY SKILL</p>
-        <h2 id="popupTitle">Skill</h2>
-        <p id="popupText"></p>
-        <button class="primary-btn popup-done" type="button" onclick="closePopup()">Got It</button>
-    </div>
+<div class="container view hidden" id="routine">
+
+    <section class="leftBox">
+        <div class="logo">
+            <div class="logo-icon">⏰</div>
+            <div>
+                <h1>Digital Clock</h1>
+                <p>Set your daily routine</p>
+            </div>
+            
+        </div>
+
+        <div class="timeline">
+            <div class="wake"><span class="icon">☀️</span><p>Set wake up time</p><select id="wakeTime"></select></div>
+            <hr>
+            <div class="wake"><span class="icon">🍽️</span><p>Set lunch time</p><select id="lunchTime"></select></div>
+            <hr>
+            <div class="wake"><span class="icon">😴</span><p>Set nap time</p><select id="napTime"></select></div>
+            <hr>
+            <div class="wake"><span class="icon">🌙</span><p>Set night time</p><select id="nightTime"></select></div>
+        </div>
+
+        <div class="msg" id="message">Good morning! Wake up! ☀️</div>
+
+        <div class="bottom-row">
+            <button class="alarm" id="setAlarm">Set Routine</button>
+            <div class="napTimings" id="summary"></div>
+        </div>
+    </section>
+
+    <section class="rightBox">
+        <div class="status" id="status">GRAB SOME HEALTHY BREAKFAST!!! 🥞</div>
+
+        <div class="picture">
+            <div class="picture-content">
+                <span>🌅</span>
+                <h2>Plan your day.<br>Live it better.</h2>
+                <p>Your time, your routine.</p>
+            </div>
+        </div>
+    </section>
+
 </div>
-
-<!-- PROJECT POPUP -->
-<div class="popup project-popup" id="projectPopup" role="dialog" aria-modal="true"
-     aria-hidden="true" aria-labelledby="projectTitle">
-    <div class="popup-content project-popup-content">
-        <button class="popup-close" type="button" onclick="closeProject()" aria-label="Close popup">&times;</button>
-        <p class="eyebrow">PROJECT DETAILS</p>
-        <h2 id="projectTitle">Project</h2>
-        <p id="projectText" class="project-text"></p>
-
-        <h4>Key Features</h4>
-        <ul id="projectFeatures" class="project-features"></ul>
-
-        <h4>Tech Used</h4>
-        <div id="projectTags" class="tags"></div>
-
-        <div class="project-popup-actions" id="projectActions"></div>
-    </div>
-</div>
-
-<!-- CERTIFICATE POPUP -->
-<div id="certificatePopup" class="certificate-popup" role="dialog" aria-modal="true"
-     aria-hidden="true" aria-labelledby="certificateTitle">
-
-    <div class="certificate-popup-content">
-
-        <button type="button"
-            class="certificate-close"
-            onclick="closeCertificate()"
-            aria-label="Close certificate">
-            <i class="fas fa-times"></i>
-        </button>
-
-        <h3 id="certificateTitle">Certificate</h3>
-
-        <img id="certificateImage"
-             src=""
-             alt="Certificate preview">
-
-    </div>
-</div>
-
-<footer>
-    <a href="#home" class="footer-logo">Pritam <span>Deshkar</span></a>
-    <p>Designed &amp; Developed by <strong>Pritam Deshkar</strong></p>
-    <p class="copyright">&copy; <span id="year"></span> Pritam Deshkar. All Rights Reserved.</p>
-    <div class="footer-social">
-        <a href="https://www.linkedin.com/in/pritam-deshkar-b46440249/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://github.com/Pritamdeshkar06" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://wa.me/917558619604" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:deshkarpritam@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-    </div>
-</footer>
-
-<button type="button" class="to-top" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+<script src="script.js"></script>
 </body>
 </html>
